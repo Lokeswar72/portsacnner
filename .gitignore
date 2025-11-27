@@ -1,9 +1,15 @@
 # Python virtual environment
 .venv/
+venv/
 
 # Python cache files
 __pycache__/
-*.pyc
+*.py[cod]
 
-# Generated reports directory
+# Generated reports
+# These are output artifacts and should not be in version control.
 reports/
+
+# IDE and editor configuration
+.idea/
+.vscode/

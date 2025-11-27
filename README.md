@@ -1,18 +1,57 @@
-# Network Port Scanner
+  ____           _    ____                                  
+ |  _ \ ___  ___| |_ / ___|  ___ __ _ _ __  _ __   ___ _ __ 
+ | |_) / _ \/ __| __| |  _  / __/ _` | '_ \| '_ \ / _ \ '__|
+ |  __/  __/\__ \ |_| |_| || (_| (_| | | | | | | |  __/ |   
+ |_|   \___||___/\__|\____| \___\__,_|_| |_|_| |_|\___|_|   
 
-A simple, fast, and multithreaded TCP port scanner written in Python. This tool allows you to scan hosts for open ports and generates reports in both CSV and HTML formats.
+!Python Version
+!License
+
+A simple, fast, and multithreaded port scanner written in Python. This tool allows you to scan hosts for open ports by actively "knocking" on them to check their status. It works for both TCP and UDP protocols and generates reports in CSV and HTML formats.
 
 **Disclaimer:** This tool is intended for educational purposes and for use on systems and networks you own or are explicitly authorized to test. Unauthorized scanning of networks is illegal.
 
+## Table of Contents
+
+- Features
+- Scan Output
+- Setup
+- Usage
+
 ## Features
 
-- **Multithreaded Scanning:** Utilizes multiple threads to scan ports concurrently for high speed.
-- **Flexible Target Selection:** Scan a single host, a comma-separated list of hosts, or a simple last-octet IP range (e.g., `192.168.1.10-20`).
-- **Flexible Port Selection:** Scan a predefined list of common ports, a single port, a comma-separated list, or a range (e.g., `80,443,8000-8100`).
-- **Dual Report Generation:** Automatically creates both a `.csv` file and a styled `.html` report for easy analysis.
-- **Organized Output:** All reports are saved into a dedicated `reports/` directory.
-- **Protocol Selection:** Choose between TCP, UDP, or both.
-- **Customizable:** Adjust the thread count and socket timeout for your specific needs.
+🚀 **Multithreaded Scanning:** Utilizes multiple threads to scan ports concurrently for high speed.
+🎯 **Flexible Target Selection:** Scan a single host, a comma-separated list of hosts, or a simple last-octet IP range (e.g., `192.168.1.10-20`).
+ポート **Flexible Port Selection:** Scan a predefined list of common ports, a single port, a comma-separated list, or a range (e.g., `80,443,8000-8100`).
+📜 **Dual Report Generation:** Automatically creates both a `.csv` file and a styled `.html` report for easy analysis.
+📂 **Organized Output:** All reports are saved into a dedicated `reports/` directory.
+🔄 **Protocol Selection:** Choose between TCP, UDP, or `both`.
+⚙️ **Customizable:** Adjust the thread count and socket timeout for your specific needs.
+
+## Scan Output
+
+The scanner provides real-time progress in the terminal and generates two report files.
+
+### Terminal Output
+
+```
+[*] Starting TCP scan: hosts=1 ports=138 threads=100 timeout=1.0s
+Progress: 138/138 (100.0%)
+[*] TCP scan finished in 0.85s.
+[*] Starting UDP scan: hosts=1 ports=138 threads=100 timeout=1.0s
+Progress: 138/138 (100.0%)
+[*] UDP scan finished in 2.15s.
+
+[*] All scans finished in 3.00s. 276 total results recorded.
+[*] Reports written: reports\scan_report_127_0_0_1_20251127_052011.csv, reports\scan_report_127_0_0_1_20251127_052011.html
+[*] Done.
+```
+
+### HTML Report
+
+A clean, modern, and responsive HTML report is generated for easy viewing in any browser. The enhanced design makes it simple to analyze scan results at a glance.
+
+*(Tip: A screenshot of your new HTML report would look great here!)*
 
 ## Setup
 
@@ -34,13 +73,13 @@ A simple, fast, and multithreaded TCP port scanner written in Python. This tool 
 
 ## Usage
 
-The main script is `run_scanner.py`. You must provide a target host and a port selection.
+The main script is `cli.py`. You must provide a target host and a port selection.
 
 ### Examples
 
-**Scan a single host for the most common ports:**
+**1. Scan a single host for the most common TCP ports:**
 ```bash
-python run_scanner.py --host 127.0.0.1 --common
+python cli.py --host 127.0.0.1 --common
 ```
 
 **Scan a single host for a specific range of ports:**
