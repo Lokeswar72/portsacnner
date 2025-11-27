@@ -1,38 +1,43 @@
-  ____           _    ____                                  
- |  _ \ ___  ___| |_ / ___|  ___ __ _ _ __  _ __   ___ _ __ 
- | |_) / _ \/ __| __| |  _  / __/ _` | '_ \| '_ \ / _ \ '__|
- |  __/  __/\__ \ |_| |_| || (_| (_| | | | | | | |  __/ |   
- |_|   \___||___/\__|\____| \___\__,_|_| |_|_| |_|\___|_|   
+# ⚡ Python Port Scanner
 
-!Python Version
-!License
+A **simple, fast, and multithreaded port scanner** written in Python. This tool actively scans hosts for open TCP and UDP ports and generates reports in both CSV and HTML formats.
 
-A simple, fast, and multithreaded port scanner written in Python. This tool allows you to scan hosts for open ports by actively "knocking" on them to check their status. It works for both TCP and UDP protocols and generates reports in CSV and HTML formats.
+> ⚠️ **Disclaimer:** This tool is intended for **educational purposes** and for use on systems and networks you **own or are authorized to test**. Unauthorized scanning of external networks is **illegal**.
 
-**Disclaimer:** This tool is intended for educational purposes and for use on systems and networks you own or are explicitly authorized to test. Unauthorized scanning of networks is illegal.
+---
 
-## Table of Contents
+## 📑 Table of Contents
+- [Features](#-features)
+- [Scan Output](#-scan-output)
+- [Setup](#-setup)
+- [Usage](#-usage)
+- [License](#-license)
 
-- Features
-- Scan Output
-- Setup
-- Usage
+---
 
-## Features
+## 🚀 Features
 
-🚀 **Multithreaded Scanning:** Utilizes multiple threads to scan ports concurrently for high speed.
-🎯 **Flexible Target Selection:** Scan a single host, a comma-separated list of hosts, or a simple last-octet IP range (e.g., `192.168.1.10-20`).
-ポート **Flexible Port Selection:** Scan a predefined list of common ports, a single port, a comma-separated list, or a range (e.g., `80,443,8000-8100`).
-📜 **Dual Report Generation:** Automatically creates both a `.csv` file and a styled `.html` report for easy analysis.
-📂 **Organized Output:** All reports are saved into a dedicated `reports/` directory.
-🔄 **Protocol Selection:** Choose between TCP, UDP, or `both`.
-⚙️ **Customizable:** Adjust the thread count and socket timeout for your specific needs.
+- **Multithreaded Scanning:** Leverages concurrent threads to perform scans at high speed.  
+- **Flexible Target Selection:**  
+  Scan a single host, multiple hosts (comma-separated), or a simple IP range (e.g., `192.168.1.10-20`).
+- **Flexible Port Selection:**  
+  Define ports as a list (`80,443`), a range (`8000-8100`), or use a predefined set of common ports.
+- **Dual Report Generation:**  
+  Automatically creates both `.csv` and `.html` reports for easy viewing and analysis.
+- **Organized Output:**  
+  Reports are stored neatly in a dedicated `reports/` directory.
+- **Protocol Support:**  
+  Supports **TCP**, **UDP**, or scanning **both**.
+- **Highly Customizable:**  
+  Adjust thread count, socket timeout, and protocol options to match your needs.
 
-## Scan Output
+---
 
-The scanner provides real-time progress in the terminal and generates two report files.
+## 📊 Scan Output
 
-### Terminal Output
+The scanner provides **real-time terminal progress** and generates **two report files** upon completion.
+
+### 🖥 Terminal Output
 
 ```
 [*] Starting TCP scan: hosts=1 ports=138 threads=100 timeout=1.0s
@@ -47,54 +52,76 @@ Progress: 138/138 (100.0%)
 [*] Done.
 ```
 
-### HTML Report
+### 🌐 HTML Report
 
-A clean, modern, and responsive HTML report is generated for easy viewing in any browser. The enhanced design makes it simple to analyze scan results at a glance.
+A **modern, responsive HTML report** is generated for browser viewing.  
+The clean design allows quick insights into scan results.
 
-*(Tip: A screenshot of your new HTML report would look great here!)*
+> 💡 *Tip: Add a screenshot of your generated HTML report here for visual reference!*
 
-## Setup
+---
 
-1.  **Clone or download the repository.**
+## ⚙️ Setup
 
-2.  **Navigate to the project directory:**
-    ```bash
-    cd "c:\Users\lokes\Desktop\port scanner"
-    ```
+1. **Clone or download the repository:**
+   ```bash
+   git clone https://github.com/yourusername/port-scanner.git
+   cd port-scanner
+   ```
 
-3.  **Create and activate a Python virtual environment:**
-    ```bash
-    # Create the virtual environment
-    python -m venv .venv
+2. **Create and activate a Python virtual environment:**
+   ```bash
+   # Create the virtual environment
+   python -m venv .venv
 
-    # Activate on Windows
-    .\.venv\Scripts\activate
-    ```
+   # Activate on Windows
+   .\.venv\Scripts\activate
+   ```
 
-## Usage
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-The main script is `cli.py`. You must provide a target host and a port selection.
+---
 
-### Examples
+## 🧭 Usage
+
+The main entry point is `cli.py`. You must specify at least one host and a port selection.
+
+### 🔹 Examples
 
 **1. Scan a single host for the most common TCP ports:**
 ```bash
 python cli.py --host 127.0.0.1 --common
 ```
 
-**Scan a single host for a specific range of ports:**
+**2. Scan a host for a specific range of ports:**
 ```bash
 python run_scanner.py --host example.com --ports 20-1024
 ```
 
-**Scan a range of hosts for specific ports:**
+**3. Scan a range of hosts for specific ports:**
 ```bash
 python run_scanner.py --host 192.168.1.10-20 --ports 22,80,443
 ```
 
-**Scan with an increased number of threads and a shorter timeout:**
+**4. Increase thread count and reduce timeout for faster scanning:**
 ```bash
 python run_scanner.py --host example.com --common --threads 200 --timeout 0.5
 ```
 
-After a scan is complete, the report files will be saved in the `reports/` directory.
+After the scan completes, results will be saved in the `reports/` directory.
+
+---
+
+## 🧾 License
+
+This project is open-source and available under the **MIT License**.  
+Feel free to use, modify, and distribute responsibly.
+
+---
+
+## 🐍 Python Version
+
+Compatible with **Python 3.8+**
