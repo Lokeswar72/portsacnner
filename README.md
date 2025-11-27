@@ -11,6 +11,7 @@ A simple, fast, and multithreaded TCP port scanner written in Python. This tool 
 - **Flexible Port Selection:** Scan a predefined list of common ports, a single port, a comma-separated list, or a range (e.g., `80,443,8000-8100`).
 - **Dual Report Generation:** Automatically creates both a `.csv` file and a styled `.html` report for easy analysis.
 - **Organized Output:** All reports are saved into a dedicated `reports/` directory.
+- **Protocol Selection:** Choose between TCP, UDP, or both.
 - **Customizable:** Adjust the thread count and socket timeout for your specific needs.
 
 ## Setup

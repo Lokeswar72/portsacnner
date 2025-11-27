@@ -12,7 +12,7 @@ def write_csv(results: List[Dict], host_label: str) -> str:
     ts = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     fname = f'scan_report_{host_label}_{ts}.csv'
     fpath = os.path.join(REPORTS_DIR, fname)
-    keys = ['host', 'port', 'status', 'service']
+    keys = ['host', 'port', 'protocol', 'status', 'service']
     with open(fpath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=keys)
         writer.writeheader()
@@ -30,7 +30,7 @@ def write_html(results: List[Dict], host_label: str) -> str:
     for r in sorted(results, key=lambda r: (r['host'], r['port'])):
         status = r['status']
         cls = 'open' if status == 'open' else 'closed'
-        rows.append(f"<tr><td>{r['host']}</td><td>{r['port']}</td><td>{r['service']}</td><td class='{cls}'>{status}</td></tr>")
+        rows.append(f"<tr><td>{r['host']}</td><td>{r['port']}</td><td>{r['protocol']}</td><td class='{cls}'>{status}</td><td>{r['service']}</td></tr>")
 
     html = f'''<!doctype html>
 <html>
@@ -58,7 +58,7 @@ def write_html(results: List[Dict], host_label: str) -> str:
     <h2>Scan Report: {host_label}</h2>
     <p>Generated on: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
     <table>
-      <thead><tr><th>Host</th><th>Port</th><th>Service</th><th>Status</th></tr></thead>
+      <thead><tr><th>Host</th><th>Port</th><th>Protocol</th><th>Status</th><th>Service</th></tr></thead>
       <tbody>
         {''.join(rows)}
       </tbody>

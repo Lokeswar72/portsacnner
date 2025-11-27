@@ -40,8 +40,8 @@ def parse_ports(ports_arg: str):
     return sorted(ports)
 
 
-def guess_service(port: int):
+def guess_service(port: int, protocol: str = 'tcp'):
     try:
-        return socket.getservbyport(port)
+        return socket.getservbyport(port, protocol)
     except Exception:
         return ""
