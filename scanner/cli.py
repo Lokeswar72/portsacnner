@@ -2,10 +2,10 @@
 # cli.py
 import argparse
 
-from scanner import COMMON_PORTS
-from scanner.utils import parse_hosts, parse_ports
-from scanner.core import PortScanner
-from scanner.reports import write_csv, write_html
+from . import COMMON_PORTS, DEFAULT_TIMEOUT, DEFAULT_THREADS
+from .utils import parse_hosts, parse_ports
+from .core import PortScanner
+from .reports import write_csv, write_html
 
 def parse_args():
     p = argparse.ArgumentParser(description='Simple multithreaded TCP port scanner (ethical use only)')
@@ -45,7 +45,6 @@ def main():
         return
 
     # use defaults from package if not provided
-    from scanner import DEFAULT_TIMEOUT, DEFAULT_THREADS
     timeout = args.timeout if args.timeout is not None else DEFAULT_TIMEOUT
     threads = args.threads if args.threads is not None else DEFAULT_THREADS
 

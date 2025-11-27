@@ -1,23 +1,31 @@
 # scanner/reports.py
 import datetime
 import csv
+import os
 from typing import List, Dict
 
+# The directory where reports will be saved.
+REPORTS_DIR = 'reports'
+
 def write_csv(results: List[Dict], host_label: str) -> str:
+    os.makedirs(REPORTS_DIR, exist_ok=True)
     ts = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     fname = f'scan_report_{host_label}_{ts}.csv'
+    fpath = os.path.join(REPORTS_DIR, fname)
     keys = ['host', 'port', 'status', 'service']
-    with open(fname, 'w', newline='', encoding='utf-8') as f:
+    with open(fpath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=keys)
         writer.writeheader()
         for row in sorted(results, key=lambda r: (r['host'], r['port'])):
             writer.writerow(row)
-    return fname
+    return fpath
 
 
 def write_html(results: List[Dict], host_label: str) -> str:
+    os.makedirs(REPORTS_DIR, exist_ok=True)
     ts = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     fname = f'scan_report_{host_label}_{ts}.html'
+    fpath = os.path.join(REPORTS_DIR, fname)
     rows = []
     for r in sorted(results, key=lambda r: (r['host'], r['port'])):
         status = r['status']
@@ -51,6 +59,6 @@ def write_html(results: List[Dict], host_label: str) -> str:
 </body>
 </html>
 '''
-    with open(fname, 'w', encoding='utf-8') as f:
+    with open(fpath, 'w', encoding='utf-8') as f:
         f.write(html)
-    return fname
+    return fpath
